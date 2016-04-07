@@ -3,7 +3,7 @@ var Witbot = require('witbot')
 
 // Expect a SLACK_TOKEN environment variable
 var slackToken = process.env.SLACK_TOKEN
-var witToken = process.env.WIT_TOKEN
+var witbot = Witbot(process.env.WIT_TOKEN)
 
 if (!slackToken) {
   console.error('SLACK_TOKEN is required!')
@@ -11,25 +11,29 @@ if (!slackToken) {
 }
 
 var controller = Botkit.slackbot()
-var bot = controller.spawn({
-  token: slackToken
-})
 
-bot.startRTM(function (err, bot, payload) {
-  if (err) {
-    throw new Error('Could not connect to Slack')
-  }
-})
+require('beepboop-botkit').start(controller);
 
-var witbot = Witbot(witToken)
+// var bot = controller.spawn({
+//   token: slackToken
+// })
+
+// bot.startRTM(function (err, bot, payload) {
+//   if (err) {
+//     throw new Error('Could not connect to Slack')
+//   }
+// })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  witbot.process(message.text, bot, message)
+  var wit = witbot.process(message.text, bot, message)
+  
+  wit.hears('greetings', 0.5, function (bot, message, outcome) {
+    bot.reply(message, "Hola back!")
+  })
+  
 })
 
-witbot.hears('greetings', 0.5, function (bot, message, outcome) {
-    bot.reply(message, "Hello to you too!")
-})
+
 
 // witbot.hears('greeti', 0.5, function (bot, message, outcome) {
 //     bot.reply(message, "Hello to you too!")
