@@ -5,6 +5,7 @@ avatar: resources/avatar.png
 config:
   - name: WIT_TOKEN
     friendly_name: Wit.ai API token.
+    global: true
 #    info: This is an unnecessary option
 #    default: the default value
 #  - name: SECRET
