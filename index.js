@@ -1,5 +1,5 @@
 var Botkit = require('botkit')
-var Witbot = require("witbot")
+var Witbot = require('witbot')
 
 // Expect a SLACK_TOKEN environment variable
 var slackToken = process.env.SLACK_TOKEN
@@ -30,7 +30,6 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 witbot.hears('greetings', 0.5, function (bot, message, outcome) {
     bot.reply(message, "Hello to you too!")
 })
-
 
 
 
