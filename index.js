@@ -24,7 +24,7 @@ require('beepboop-botkit').start(controller);
 //   }
 // })
 
-controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
+controller.hears('.*', 'direct_message,direct_mention', function (bot, message) {
   var wit = witbot.process(message.text, bot, message)
   
   wit.hears('greetings', 0.5, function (bot, message, outcome) {
