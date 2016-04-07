@@ -31,6 +31,10 @@ witbot.hears('greetings', 0.5, function (bot, message, outcome) {
     bot.reply(message, "Hello to you too!")
 })
 
+// witbot.hears('greeti', 0.5, function (bot, message, outcome) {
+//     bot.reply(message, "Hello to you too!")
+// })
+
 
 
 // ==
