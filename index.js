@@ -3,7 +3,7 @@ var Witbot = require('witbot')
 var token = process.env.SLACK_TOKEN
 var witbot = Witbot(process.env.WIT_TOKEN)
 var controller = Botkit.slackbot({ debug: false });
-var tasks = require('./tasks')
+var tasks = require('./tasks')();
 
 if (token) {
     console.log("Starting in single-team mode")
