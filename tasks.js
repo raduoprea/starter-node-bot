@@ -20,10 +20,14 @@ function NextTask() {
     client.users.me()
       .then(function(user) {
         var userId = user.id;
+        console.log('userId: ' + userId);
+        
         // The user's "default" workspace is the first one in the list, though
         // any user can have multiple workspaces so you can't always assume this
         // is the one you want to work with.
         var workspaceId = user.workspaces[0].id;
+        console.log('workspaceId: ' + workspaceId);
+        
         return client.tasks.findAll({
           assignee: userId,
           workspace: workspaceId,
