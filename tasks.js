@@ -1,5 +1,7 @@
-var request = require('request');
 var asana = require('asana');
+var request = require('request');
+var util = require('util');
+
 var clientId = process.env.ASANA_CLIENT_ID;
 var clientSecret = process.env.ASANA_CLIENT_SECRET;
 var personalAccessToken = process.env.ASANA_TOKEN;
