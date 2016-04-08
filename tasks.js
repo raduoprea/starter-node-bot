@@ -14,7 +14,7 @@ function NextTask () {
         var client = asana.Client.create().useAccessToken(personalAccessToken);
         client.users.me().then(function(me) {
             console.log(me);
-            fn(me);
+            fn(null, me);
         });
     }
       
