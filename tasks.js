@@ -45,21 +45,15 @@ function NextTask() {
         return task.assignee_status === 'today';
       })
       .then(function(list) {
-        console.log(util.inspect(list, {
+        console.log('Tasks: ' + util.inspect(list, {
           colors: true,
           depth: null
         }));
+        
+        fn(null, util.inspect(list));
+        
       });
     
-    // var url = 'https://app.asana.com/api/1.0/tasks?workspace='+ workspaceId +
-    //           '&assignee=' + user;
-    
-    // request(url, function(error, response, body) {
-    //   if (!error && response.statusCode == 200) {
-    //     console.log(body)
-    //     fn(null, body);
-    //   }
-    // })
   }
 
 }

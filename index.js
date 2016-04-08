@@ -32,7 +32,7 @@ controller.hears('.*', 'direct_message,direct_mention', function(bot, message) {
       if (error) {
         bot.reply(message, 'There was a problem: ' + error);
       } else {
-        bot.reply(message, msg);
+        bot.reply(message, 'Your tasks: ' + msg);
       }
 
     });
