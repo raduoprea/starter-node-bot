@@ -2,6 +2,9 @@ name: Frank
 description: A simple node.js slack bot
 avatar: resources/avatar.png
 #background: resources/background.png
+#screenshots:
+#  - screenshot: resources/screenshot1.png
+#  - screenshot: resources/screenshot2.jpg
 config:
   - name: WIT_TOKEN
     friendly_name: Wit.ai API token.
@@ -19,13 +22,3 @@ config:
     friendly_name: Asana Personal Token.
     type: secret
     global: true
-#    info: This is an unnecessary option
-#    default: the default value
-#  - name: SECRET
-#    friendly_name: Shhhh
-#    info: This is an secret option
-#    type: secret
-#    default: not secret though
-#screenshots:
-#  - screenshot: resources/screenshot1.png
-#  - screenshot: resources/screenshot2.jpg
