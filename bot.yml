@@ -22,3 +22,7 @@ config:
     friendly_name: Asana Personal Token.
     type: secret
     global: true
+  - name: ASANA_WORKSPACE_ID
+    friendly_name: Asana Workspace Id.
+    type: secret
+    global: true
