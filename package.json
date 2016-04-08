@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/beepboophq/node-slack-bot#readme",
   "dependencies": {
+    "asana": "^0.14.1",
     "beepboop-botkit": "^1.1.1",
     "botkit": "0.0.15",
     "witbot": "^2.1.0"

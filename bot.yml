@@ -7,6 +7,18 @@ config:
     friendly_name: Wit.ai API token.
     type: secret
     global: true
+  - name: ASANA_CLIENT_ID
+    friendly_name: Asana Client ID token.
+    type: secret
+    global: true
+  - name: ASANA_CLIENT_SECRET
+    friendly_name: Asana Client Secret.
+    type: secret
+    global: true
+  - name: ASANA_TOKEN
+    friendly_name: Asana Personal Token.
+    type: secret
+    global: true
 #    info: This is an unnecessary option
 #    default: the default value
 #  - name: SECRET
