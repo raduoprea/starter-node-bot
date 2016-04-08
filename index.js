@@ -27,19 +27,29 @@ controller.hears('.*', 'direct_message,direct_mention', function(bot, message) {
   })
 
   wit.hears('next_task', 0.5, function(bot, message, outcome) {
-
-    tasks.nextTaskForUser( 'me', function(error, msg) {
+    bot.reply(message, 'Let me check..');
+    bot.startTyping(message);
+    tasks.nextTaskForUser( 'me', 1, function(error, msg) {
       if (error) {
         bot.reply(message, 'There was a problem: ' + error);
       } else {
-        bot.reply(message, 'Your tasks: ' + msg);
+        bot.reply(message, 'Go get them, tiger:\n' + msg);
       }
 
     });
   })
 
   wit.hears('tasks_for_today', 0.5, function(bot, message, outcome) {
-    bot.reply(message, 'Here is a list of your tasks for today.');
+    bot.reply(message, 'Just a moment..');
+    bot.startTyping(message);
+    tasks.nextTaskForUser( 'me', 0, function(error, msg) {
+      if (error) {
+        bot.reply(message, 'There was a problem: ' + error);
+      } else {
+        bot.reply(message, 'This is the list for today:\n' + msg);
+      }
+
+    });
   })
 
 })

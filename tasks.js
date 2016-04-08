@@ -14,19 +14,16 @@ module.exports = function() {
 function NextTask() {
   var self = this;
 
-  self.nextTaskForUser = function(user, fn) {
+  self.nextTaskForUser = function(user, numberOfTasks, fn) {
     var client = asana.Client.create().useAccessToken(personalAccessToken);
+    var tasksList;
     
     client.users.me()
       .then(function(user) {
         var userId = user.id;
-        console.log('userId: ' + userId);
         
-        // The user's "default" workspace is the first one in the list, though
-        // any user can have multiple workspaces so you can't always assume this
-        // is the one you want to work with.
+        // Get the first workspace (the default one)
         var workspaceId = user.workspaces[0].id;
-        console.log('workspaceId: ' + workspaceId);
         
         return client.tasks.findAll({
           assignee: userId,
@@ -35,25 +32,32 @@ function NextTask() {
           opt_fields: 'id,name,assignee_status,completed'
         });
       })
-      .then(function(response) {
-        // There may be more pages of data, we could stream or return a promise
-        // to request those here - for now, let's just return the first page
-        // of items.
-        return response.data;
+      .then(function(collection) {
+        // Fetch up to 1000 tasks, using multiple pages if necessary
+        collection.fetch(1000).then(function(tasks) {
+          return tasks;
+        
       })
       .filter(function(task) {
         return task.assignee_status === 'today';
       })
       .then(function(list) {
-        console.log('Tasks: ' + util.inspect(list, {
-          colors: true,
-          depth: null
-        }));
         
-        fn(null, util.inspect(list));
+        var taskList;
+        if (numberOfTasks !== 0) {
+          taskList = list.slice(0, numberOfTasks).map(function(task, index) {
+            return (index+1) + '. ' + task.name;
+          });;
+        } else {
+          taskList = list.map(function(task, index) {
+            return (index+1) + '. ' + task.name;
+          });
+        }
+        
+        fn(null, taskList.join('\n'));
         
       });
-    
+    });
   }
 
 }
