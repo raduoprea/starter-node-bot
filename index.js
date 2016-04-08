@@ -30,7 +30,7 @@ controller.hears('.*', 'direct_message,direct_mention', function(bot, message) {
 
         tasks.nextTask (function (error, msg) {
             if (error) {
-                bot.reply(message, 'There was a problem.');
+                bot.reply(message, 'There was a problem: ' + error);
             }
             bot.reply(message, msg);
         });
